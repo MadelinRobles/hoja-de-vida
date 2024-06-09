@@ -16,8 +16,8 @@ export default class HeroComponent implements OnInit {
 
   downloadPDF() {
     const link = document.createElement('a');
-    link.href = 'assets/CV.pdf'; // Ruta relativa al archivo PDF
-    link.download = 'archivo.pdf'; // Nombre predeterminado para la descarga
+    link.href = 'assets/CV.pdf';
+    link.download = 'archivo.pdf'; 
     link.click();
   }
 }
