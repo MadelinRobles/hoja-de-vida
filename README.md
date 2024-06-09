@@ -53,5 +53,5 @@ y en donde dice branch lo deje en gh-pages y root
 En la pestaña de Actions se puede ver como se esta cargando la pagina
 
 En el apartado de pages se puede ver la ruta a nuestra pagina, para cargar los cambios nuevos en nuestro proyecto se necesita ejecutar los siguientes comandos
-npm run build --prod --base-href=/perfil-personal/
+npm run build --prod --base-href=/hoja-de-vida/
 ngh --dir=dist/hoja-de-vida/browser
