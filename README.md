@@ -1,27 +1,57 @@
 # HojaDeVida
+Este proyecto esta realizado en angular y para agregar diseño se utilizo Tailwind Css con un plugin llamado flowbite.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+# Paso 1
+Crear un proyecto en angular utilizando los comando ng new nombreProyecto
+instalar Tailwind Css con lo comandos npm install -D tailwindcss y 
+npx tailwindcss init
+Instalar flowbite npm install flowbite
+configurar el archivo tailwind.config.js 
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}","./node_modules/flowbite/**/*.js"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('flowbite/plugin')],
+}
 
-## Development server
+configurar el archivo de estilos global 
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# paso 2
+Crear los componentes necesarios para nuestro proyecto y sus respectivas carpetas
+para crear un componente
+ng g c components/nombreComponente
 
-## Code scaffolding
+# paso 3
+Para el despliegue en gitpages tuve que configurar el archivo angular.json
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/hoja-de-vida", //agregue esta linea
+            "baseHref": "/hoja-de-vida/",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Despues tuve que correr los siguientes comandos en mi proyecto 
+npm run build --prod --base-href=/hoja-de-vida/
+npm install -g angular-cli-ghpages
+ngh --dir=dist/hoja-de-vida/browser
 
-## Build
+y hacer un push
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+para la configuracion en github tuve que entrar al repositorio en settings/pages 
+y en donde dice branch lo deje en gh-pages y root
+En la pestaña de Actions se puede ver como se esta cargando la pagina
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+En el apartado de pages se puede ver la ruta a nuestra pagina, para cargar los cambios nuevos en nuestro proyecto se necesita ejecutar los siguientes comandos
+npm run build --prod --base-href=/perfil-personal/
+ngh --dir=dist/hoja-de-vida/browser
